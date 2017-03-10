@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by Administrator on 2016/11/23.
  */
 public class Logger {
-    private static final String PREFIX = "[Logger]-->";
+    private static final String PREFIX = "[Dylan_Logger]-->";
 
     public static void d(String tag, String msg) {
             Log.d(PREFIX + tag, msg);
