@@ -74,7 +74,6 @@ public class VolCircle extends View {
         mBitmap = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(R.styleable.VolCircle_backGroud, 0));
 
     }
-
     @Override
     protected void onDraw(Canvas canvas) {
 
