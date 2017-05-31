@@ -1,4 +1,4 @@
-package com.example.appdemo;
+package lunbo;
 
 import java.util.ArrayList;
 import java.util.Random;
