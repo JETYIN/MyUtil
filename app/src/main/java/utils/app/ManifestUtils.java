@@ -21,6 +21,7 @@ public class ManifestUtils {
 
 
     public static String readMetaData(Context context, String key) {
+
         ApplicationInfo applicationInfo;
         Bundle bundle = null;
         try {
