@@ -1,6 +1,8 @@
 package utils;
 
 import android.os.AsyncTask;
+import android.os.Looper;
+import android.os.Parcelable;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
@@ -23,7 +25,6 @@ public abstract class BaseAsynTask<Params, Progress, Result> extends AsyncTask<P
     private static final ThreadFactory THREAD_FACTORY = new ThreadFactory() {
         private final AtomicInteger mCount = new AtomicInteger(1);
 
-
         @Override
         public Thread newThread(Runnable r) {
             return new Thread(r, "QuickAsyncTask #" + mCount.getAndIncrement());
@@ -31,14 +32,11 @@ public abstract class BaseAsynTask<Params, Progress, Result> extends AsyncTask<P
     };
     //阻塞队列
     private static final BlockingQueue<Runnable> POOL_WORK_QUEUE = new LinkedBlockingQueue<Runnable>(128);
-
-    private static final BlockingQueue<Runnable> POOL_WORK_QUEUE2 = new LinkedBlockingQueue<Runnable>(128);
-
-    public static final Executor SINGLE_EXECUTOR = new ThreadPoolExecutor(THREAD_BASE_SIZE, THREAD_MAX_SIZE, KEEP_ALIVE, TimeUnit.SECONDS,
-            POOL_WORK_QUEUE2, THREAD_FACTORY);
-
     public static final Executor SINGLE_EXECUTOR_LONG = new ThreadPoolExecutor(4, 128, 10, TimeUnit.SECONDS,
             POOL_WORK_QUEUE, THREAD_FACTORY, new ThreadPoolExecutor.DiscardOldestPolicy());
+    private static final BlockingQueue<Runnable> POOL_WORK_QUEUE2 = new LinkedBlockingQueue<Runnable>(128);
+    public static final Executor SINGLE_EXECUTOR = new ThreadPoolExecutor(THREAD_BASE_SIZE, THREAD_MAX_SIZE, KEEP_ALIVE, TimeUnit.SECONDS,
+            POOL_WORK_QUEUE2, THREAD_FACTORY);
 
     /**
      * Should only do quick tasks here. Starting from API 11, the tasks are

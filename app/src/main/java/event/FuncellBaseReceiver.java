@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
@@ -23,6 +24,8 @@ public abstract class FuncellBaseReceiver {
     private String TAG = "FuncellBaseReceiver";
     private WeakReference<FuncellBaseReceiver> mThisWeakRef;
     private boolean mScaned;
+
+
 
     public FuncellBaseReceiver() {
         mThisWeakRef = new WeakReference(this);
