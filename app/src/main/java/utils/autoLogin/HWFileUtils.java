@@ -19,7 +19,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
-/**@params当前类用作保存用户账号、密码到文件，并且删除指定账号**/
 public class HWFileUtils {
 
 	private static String TAG = "HWFileUtils";
@@ -33,8 +32,7 @@ public class HWFileUtils {
 
 	// 读取登录、注册成功的所有账号
 	public static Map<String, List<String>> readUserInfo() {
-
-		HWUtils.logError(TAG, "****读取用户信息");
+		keyList.clear();
 		File file = new File(rootPath() + FUNCELL + "/" + "info" + "/userInfo.txt");
 
 		FileInputStream fis;
@@ -51,7 +49,6 @@ public class HWFileUtils {
 			String[] contents = null;
 			Map<String, List<String>> map = new LinkedHashMap<>();
 			while ((content = br.readLine()) != null) {
-				HWUtils.logError(TAG, "@@@@读取的每行数据是:" + content);
 				List<String> list = new ArrayList<>();
 				contents = content.split("##");
 				keyList.add(contents[0]);// 键名保存在list中
@@ -61,7 +58,6 @@ public class HWFileUtils {
 
 			}
 
-			HWUtils.logError(TAG, "@@@@读取值:" + map.toString() + ",keyList:" + keyList.toString());
 			// 关闭流对象
 			fis.close();
 			br.close();
@@ -75,7 +71,6 @@ public class HWFileUtils {
 
 	// 保存所有登录成功、注册成功账号
 	public static void saveUserInfo(String userAccount, String refreshToken, String accessToken) {
-		HWUtils.logError(TAG, "****保存用户信息");
 		FileWriter file;
 		try {
 			file = new FileWriter(rootPath() + FUNCELL + "/" + "info" + "/userInfo.txt", true);// 设置为true为继续追加内容,普通file不能追加
@@ -100,7 +95,6 @@ public class HWFileUtils {
 
 	// 快速登录账号文件，只保存一个
 	public static void saveQuick(String userAccount, String refreshToken, String token) {
-		HWUtils.logError(TAG, "****保存用户信息-saveQuick");
 		try {
 			File file = new File(rootPath() + FUNCELL + "/" + "info" + "/quick.txt");
 			FileOutputStream fos = new FileOutputStream(file);
@@ -114,8 +108,7 @@ public class HWFileUtils {
 	}
 
 	// 读取登录成功、注册成功账号，只有一个
-	public static Map readQuickAccount() {
-		HWUtils.logError(TAG, "****读取用户信息-readQuickAccount");
+	public static Map<String, List<String>> readQuickAccount() {
 		try {
 			File file = new File(rootPath() + FUNCELL + "/" + "info" + "/quick.txt");
 			FileInputStream fis = new FileInputStream(file);
@@ -132,7 +125,6 @@ public class HWFileUtils {
 			list.add(contents[2]);
 			map.put(contents[0], list);// 值
 
-			HWUtils.logError(TAG, "****读取到的信息是:" + map.toString());
 			fis.close();
 			br.close();
 			return map;
@@ -151,7 +143,6 @@ public class HWFileUtils {
 			String SDPath = rootPath();
 			File sdFile = new File(SDPath + FUNCELL + "/" + "info");
 			if (!sdFile.exists()) {
-				HWUtils.logError(TAG, sdFile.getAbsolutePath());
 				sdFile.mkdirs();// 创建文件夹
 				return sdFile.getAbsolutePath();
 			}
@@ -174,14 +165,12 @@ public class HWFileUtils {
 	public static void createHwAccountFile() {
 		String filePath = getFuncellDir();
 		if (null == filePath) {
-			HWUtils.logError(TAG, "****userInfo文件已创建");
 			return;
 		}
 		File newFile = new File(filePath + "/" + "userInfo.txt");
 		File quickFile = new File(filePath + "/" + "quick.txt");
 
 		if (!newFile.exists()) {
-			HWUtils.logError(TAG, "****创建file:" + newFile.getAbsolutePath());
 			try {
 				newFile.createNewFile();// 创建文件
 				quickFile.createNewFile();
@@ -211,7 +200,6 @@ public class HWFileUtils {
 	// 将经过用户修改的登录信息重新写回文件
 
 	public static void saveChangeInfo(Map<String, List<String>> map) {
-		HWUtils.logError(TAG, "****保存修改后的用户信息map:" + map.toString());
 		clear();
 		FileWriter file;
 		Iterator<Entry<String, List<String>>> entries = map.entrySet().iterator();

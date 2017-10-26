@@ -31,7 +31,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 
-/**@params此类用于实现悬浮窗时间间隔内隐藏**/
 public class FloatView extends FrameLayout implements View.OnTouchListener {
 
 	private String TAG = "FloatView";
@@ -421,7 +420,7 @@ public class FloatView extends FrameLayout implements View.OnTouchListener {
 			}
 		};
 		if (mCanHide) {
-			mTimer.schedule(mTimerTask, 6000L, 2000L);
+			mTimer.schedule(mTimerTask, 3500L, 2000L);
 		}
 	}
 

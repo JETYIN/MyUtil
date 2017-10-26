@@ -16,10 +16,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**@params 此类用于dialog动画实现**/
 @SuppressLint("ResourceAsColor")
-public class FunQuickLoginDialog extends Dialog implements
-		View.OnClickListener {
+public class FunQuickLoginDialog extends Dialog implements View.OnClickListener {
 
 	private Context mContext;
 
@@ -38,14 +36,14 @@ public class FunQuickLoginDialog extends Dialog implements
 		mContext = context;
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(RUtils.layout(context, "fun_quick_login"));
+		//设置全屏--不设置此语句顶部会被状态栏遮挡
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
-				WindowManager.LayoutParams.WRAP_CONTENT);
+		getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
 		// 位置
-		getWindow().setGravity(Gravity.CENTER | Gravity.TOP);
-		/**出现、消失动画,此处是dialog实现属性动画的关键设置，设置动画类型**/
-		getWindow().setWindowAnimations(
-				RUtils.style(mContext, "fun_quicklogin_dialog"));
+		getWindow().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP);
+		// 出现、消失动画
+		getWindow().setWindowAnimations(RUtils.style(mContext, "fun_quicklogin_dialog"));
 
 		setCancelable(false);
 		setCanceledOnTouchOutside(false);
@@ -56,8 +54,7 @@ public class FunQuickLoginDialog extends Dialog implements
 
 		accountTV = (TextView) findViewById(RUtils.id(mContext, "account_tv"));
 		switchTV = (TextView) findViewById(RUtils.id(mContext, "switch_tv"));
-		contentFL = (FrameLayout) findViewById(RUtils
-				.id(mContext, "content_fl"));
+		contentFL = (FrameLayout) findViewById(RUtils.id(mContext, "content_fl"));
 		lodingIM = (ImageView) findViewById(RUtils.id(mContext, "loding_image"));
 		lodingAnim(lodingIM);
 		accountTV.setText(account);
@@ -66,10 +63,10 @@ public class FunQuickLoginDialog extends Dialog implements
 
 	private void lodingAnim(ImageView im) {
 
-		Animation animation = AnimationUtils.loadAnimation(mContext,
-				RUtils.anim(mContext, "fun_quick_loding"));
+		Animation animation = AnimationUtils.loadAnimation(mContext, RUtils.anim(mContext, "fun_quick_loding"));
 
 		im.startAnimation(animation);
+
 	}
 
 	@Override
