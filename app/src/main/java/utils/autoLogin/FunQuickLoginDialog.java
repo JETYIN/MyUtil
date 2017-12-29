@@ -1,7 +1,5 @@
 package utils.autoLogin;
 
-import com.haowan123.funcell.sdk.apiinterface.FunCellPlatformSdkApi;
-import com.haowan123.funcell.sdk.util.RUtils;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -27,6 +25,7 @@ public class FunQuickLoginDialog extends Dialog implements View.OnClickListener 
 
 	private IQuickLoginClick listDialogClick;
 
+	//dialog动画，从顶部显示
 	public FunQuickLoginDialog(Context context, String account) {
 		this(context, RUtils.style(context, "Translucent_NoTitle"), account);
 	}
