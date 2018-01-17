@@ -19,10 +19,24 @@ public class SystemPermission {
         }
     }
 
+    /**
+     * WRITE_SETTINGS系统设置权限，有两个权限动态申请权限无用。需要跳转至系统设置界面打开系统权限开关
+     * @param context
+     */
     private void checkPermission(Activity context) {
         if (!Settings.System.canWrite(context)) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS, Uri.parse("package:" + context.getPackageName()));
             context.startActivityForResult(intent, 100);
         }
+    }
+
+    /**
+     * SYSTEM_ALERT_WINDOW悬浮窗权限
+     * @param context
+     */
+    private  void requestAlertWindowPermission(Activity context) {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+        intent.setData(Uri.parse("package:" + context.getPackageName()));
+        context.startActivityForResult(intent, 200);
     }
 }
