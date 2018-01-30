@@ -58,6 +58,11 @@ public class HandwareUtils {
 
 	public static long lastClickTime;
 
+	/**
+	 * android 6.0以上需要其他方法进行兼容，此方法不适用与6.0以上
+	 * @param context
+	 * @return
+     */
 	public static String getImei(Context context) {
 		String imei = "";
 		try {

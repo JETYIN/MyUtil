@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="60dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="60dp"
+    tools:context="com.sunqi237.scrollview.MainActivity" >
+
+    <ViewFlipper
+        android:id="@+id/flipper_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoStart="true"
+        android:background="@android:color/white"
+        android:flipInterval="3000"
+        android:inAnimation="@anim/animation_in"
+        android:outAnimation="@anim/animation_out" >
+    </ViewFlipper>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/flipper_id"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/white" >
+
+        <TextView
+            android:id="@+id/text_scroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="就算对方角度来看积分卡撒娇福克斯的缴费基数大幅减少贷款房价跌幅扩大解放打算开发建设的方式登记方式的开发建设贷款的司法鉴定收费的"
+            android:textColor="#00FF00"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>
