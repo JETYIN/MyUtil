@@ -1,5 +1,7 @@
 package utils;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 
 import java.io.File;
@@ -81,5 +83,13 @@ public class CacheUtils {
             }
         }
         return dir.delete();
+    }
+
+    //FIXME 复制文字到剪切板
+    public static void copy(Context context) {
+        ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("content", s2);//FIXME S2为将要复制的文字内容
+        cmb.setPrimaryClip(clipData);
+        //FIXME 提示已将文字复制到剪切板
     }
 }
