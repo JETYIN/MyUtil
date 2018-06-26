@@ -6,7 +6,7 @@ import rx.Subscriber;
  * Created by Administrator on 2018/6/25.
  */
 
-public abstract class RxSubscriber<T> extends Subscriber<T> {//此类可封装ui等待操作
+public abstract class RxSubscriber<T> extends Subscriber<T> {//此类可封装ui等待操作,进行网络请求时的等待操作
 
 
     @Override
